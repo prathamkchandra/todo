@@ -36,7 +36,7 @@ setTodo(e.target.value)
         {todos.map(item=>{
 
       return <div key={todo} className="todo flex w-1/4 my-3 justify-between">
-          <input type="checkbox" value={todo.isCompleted} name="" id=""/>
+          <input onChange={handlecheckbox} type="checkbox" value={todo.isCompleted} name="" id=""/>
           <div className={item.isCompleted?"line-through":""}>{item.todo}</div>
             <div className="buttons">
               <button onClick={handleEdit}className='bg-violet-800 hover:bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md mx-1'>Edit</button>
