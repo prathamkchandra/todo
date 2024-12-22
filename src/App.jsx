@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Navbar from './components/navbar'
-
+const { v4: uuidv4 } = require('uuid');
 function App() {
   const [todo, setTodo] = useState("")
   const [todos, setTodos] = useState([])
@@ -12,14 +12,16 @@ function App() {
 
   }
   const handleAdd= ()=>{
-    setTodos([...todos, {todo, isCompleted:false}])
+    setTodos([...todos, {id: uuidv4(),todo, isCompleted:false}])
     setTodo("")
     console.log(todos)
   }
   const handlechange= (e)=>{
 setTodo(e.target.value)
   }
-  (first) => { second }
+  const handlecheckbox = (e)=>{
+    setTodo(e.target.id) 
+}
   return (
     <>
       <Navbar/> 
