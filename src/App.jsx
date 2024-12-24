@@ -46,7 +46,7 @@ console.log(newTodos, todos)
       <div className="todos">
         {todos.map(item=>{
 
-      return <div key={item.id} className="todo flex w-1/4 my-3 justify-between">
+      return <div key={item.id} className="todo flex w-1/4 my-2 justify-between">**
           <input name={item.id} onChange={handleCheckbox} type="checkbox" value={todo.isCompleted} id=""/>
           <div className={item.isCompleted?"line-through":""}>{item.todo}</div>
             <div className="buttons">
