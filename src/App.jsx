@@ -38,7 +38,7 @@ console.log(newTodos, todos)
       <Navbar/> 
     <div className="container mx-4 my-4 rounded-xl p-5 bg-violet-100 min-h-[70vh]">
       <div className="addTodo my-5">
-        <h2 className='text-lg font-bold'>Add a Todo</h2>
+        <h2 className='text-lg font-bold'>Add Todo</h2>
         <input onChange={handlechange} value={todo} type="text" className='w-1/2'/>
         <button onClick={handleAdd} className='bg-violet-800 hover :bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md mx-4'>Add</button>
         </div>
