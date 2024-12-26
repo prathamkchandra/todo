@@ -9,8 +9,16 @@ function App() {
   const handleEdit=()=>{
 
   }
-  const handleDelete= ()=>{
-
+  const handleDelete= (e,id)=>{
+    console.log(`The id is ${id}`)
+    let index = todos.findIndex(item=>{
+      return item.id== id;
+    })
+    console.log(index)
+    let newTodos = todos.filter(item=>{
+      return item.id!==id
+    });
+    setTodos(newTodos)
   }
   const handleAdd= ()=>{
     setTodos([...todos,{id:uuidv4() ,todo, isCompleted:false}])
@@ -51,7 +59,7 @@ console.log(newTodos, todos)
           <div className={item.isCompleted?"line-through":""}>{item.todo}</div>
             <div className="buttons">
               <button onClick={handleEdit} className='bg-violet-800 hover:bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md mx-1'>Edit</button>
-              <button onClick={handleDelete} className='bg-violet-800 hover:bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md mx-1'>Delete</button>
+              <button onClick={(e)=>{handleDelete(e,item.id)}} className='bg-violet-800 hover:bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md mx-1'>Delete</button>
               </div>
               </div>
         })}
