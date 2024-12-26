@@ -6,8 +6,13 @@ function App() {
   const [todos, setTodos] = useState([])
   // const { v4: uuidv4 } = require('uuid');
   
-  const handleEdit=()=>{
-
+  const handleEdit=(e, id)=>{
+    let t = todos.filter(i=>i.id == id)
+    setTodo(t[0].todo)
+    let newTodos = todos.filter(item=>{
+      return item.id!=id
+    });
+    setTodos(newTodos)
   }
   const handleDelete= (e,id)=>{
     console.log(`The id is ${id}`)
@@ -52,13 +57,16 @@ console.log(newTodos, todos)
         </div>
       <h2 className='text-lg font-bold'>Your todos</h2>
       <div className="todos">
+        {todos.length == 0 && <div className='m-5'>No Todos yet!</div>}
         {todos.map(item=>{
 
-      return <div key={item.id} className="todo flex w-1/4 my-2 justify-between">**
-          <input name={item.id} onChange={handleCheckbox} type="checkbox" value={todo.isCompleted} id=""/>
-          <div className={item.isCompleted?"line-through":""}>{item.todo}</div>
+      return <div key={item.id} className="todo flex w-1/4 my-2 justify-between">
+        <div className='flex gap-5'>
+        <input name={item.id} onChange={handleCheckbox} type="checkbox" value={todo.isCompleted} id=""/>
+        <div className={item.isCompleted?"line-through":""}>{item.todo}</div>
+        </div>
             <div className="buttons">
-              <button onClick={handleEdit} className='bg-violet-800 hover:bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md mx-1'>Edit</button>
+              <button onClick={(e)=>{handleEdit(e,item.id)}} className='bg-violet-800 hover:bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md mx-1'>Edit</button>
               <button onClick={(e)=>{handleDelete(e,item.id)}} className='bg-violet-800 hover:bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md mx-1'>Delete</button>
               </div>
               </div>
