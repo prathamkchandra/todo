@@ -1,11 +1,22 @@
-import { useState } from 'react'
+import { useState , useEffect } from 'react'
 import Navbar from './components/navbar'
 import { v4 as uuidv4 } from 'uuid';
 function App() {
   const [todo, setTodo] = useState("")
   const [todos, setTodos] = useState([])
   // const { v4: uuidv4 } = require('uuid');
-  
+useEffect(() => {
+  let todoString = localStorage.getItem("todos")
+  if(todoString){
+    let todos = JSON.parse(localStorage.getItem("todos"))
+  setTodos(todos) 
+}
+}, [])
+
+  const saveToLS = (params) => { 
+  localStorage.setItem("todos", JSON.stringify(todos))  
+  }
+
   const handleEdit=(e, id)=>{
     let t = todos.filter(i=>i.id == id)
     setTodo(t[0].todo)
@@ -13,6 +24,7 @@ function App() {
       return item.id!=id
     });
     setTodos(newTodos)
+    saveToLS()
   }
   const handleDelete= (e,id)=>{
     console.log(`The id is ${id}`)
@@ -28,11 +40,13 @@ function App() {
   const handleAdd= ()=>{
     setTodos([...todos,{id:uuidv4() ,todo, isCompleted:false}])
     setTodo("")
-    console.log(todos)
+    saveToLS()
   }
+
   const handlechange= (e)=>{
 setTodo(e.target.value)
   }
+
  const handleCheckbox = (e) =>{
   console.log(e,e.target)
   let id = e.target.name;
@@ -44,7 +58,7 @@ console.log(index)
 let newTodos = [...todos];
 newTodos[index].isCompleted = !newTodos[index].isCompleted;
 setTodos(newTodos)
-console.log(newTodos, todos)
+saveToLS()
  }
   return (
     <>
@@ -53,7 +67,7 @@ console.log(newTodos, todos)
       <div className="addTodo my-5">
         <h2 className='text-lg font-bold'>Add Todo</h2>
         <input onChange={handlechange} value={todo} type="text" className='w-1/2'/>
-        <button onClick={handleAdd} className='bg-violet-800 hover :bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md mx-4'>Add</button>
+        <button onClick={handleAdd} className='bg-violet-800 hover :bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md mx-4'>Save</button>
         </div>
       <h2 className='text-lg font-bold'>Your todos</h2>
       <div className="todos">
@@ -65,7 +79,7 @@ console.log(newTodos, todos)
         <input name={item.id} onChange={handleCheckbox} type="checkbox" value={todo.isCompleted} id=""/>
         <div className={item.isCompleted?"line-through":""}>{item.todo}</div>
         </div>
-            <div className="buttons">
+            <div className="buttons flex h-full">
               <button onClick={(e)=>{handleEdit(e,item.id)}} className='bg-violet-800 hover:bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md mx-1'>Edit</button>
               <button onClick={(e)=>{handleDelete(e,item.id)}} className='bg-violet-800 hover:bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md mx-1'>Delete</button>
               </div>
