@@ -1,3 +1,24 @@
+# 📝 To-Do App
+
+A modern and user-friendly **To-Do web app** built with **React** to help organize and manage tasks efficiently.  
+
+## 🚀 Features  
+✅ Add, edit, delete tasks | 🎨 Tailwind CSS UI | 🌙 Dark Mode | 🔍 Search & Filter
+
+## 🛠 Tech Stack  
+- **Frontend:** React, Vite, Tailwind CSS  
+- **State Management:** React Hooks  
+- **Linting & Formatting:** ESLint, Prettier  
+- **Deployment:** Vercel/GitHub Pages  
+
+## 📦 Installation  
+git clone https://github.com/prathamkchandra/todo.git  
+cd todo  
+npm install  
+npm run dev  # Start development server  
+npm run build  # Build for production  
+
+
 
 # React + Vite
 
