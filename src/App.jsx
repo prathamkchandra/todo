@@ -33,7 +33,7 @@ function App() {
     saveToLS();
   };
   const handleDelete = (e, id) => {
-    console.log(`The id is ${id}`);
+    console.log(`The id is ${id}`);             
     let index = todos.findIndex((item) => {
       return item.id == id;
     });
